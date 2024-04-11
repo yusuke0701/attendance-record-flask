@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "todo-flask"
+name = "attendance-record-flask"
 version = "0.1.0"
 description = ""
 authors = ["YusukeNakashima <yuusukerego@yahoo.co.jp>"]
