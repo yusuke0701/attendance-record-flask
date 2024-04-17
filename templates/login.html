@@ -10,12 +10,20 @@
 </head>
 
 <body>
-    <div>
+    <div class="container">
         <h1>ログイン画面</h1>
         <form method="POST" action="/login">
-            <input name="email" type="text" placeholder="メールアドレス" />
-            <input name="password" type="password" placeholder="パスワード" />
-            <button type="submit">ログイン</button>
+            <div class="form-group">
+                <label class="control-label">メールアドレス</label>
+                <input name="email" type="email" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label class="control-label">パスワード</label>
+                <input name="password" type="password" class="form-control" />
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">ログイン</button>
+            </div>
         </form>
         <a href="/register">新規登録へ</a>
     </div>
