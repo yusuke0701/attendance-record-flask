@@ -1,5 +1,6 @@
 import enum
 
+from flask_login import UserMixin
 from sqlalchemy.schema import Column
 from sqlalchemy.types import Integer, String, Enum
 
@@ -16,9 +17,10 @@ class UserClass(enum.Enum):
     Admin = 3  # システム管理者
 
 
-class User(Base):
+class User(Base, UserMixin):
     """
     User は各ユーザーのデータです。
+    ログインに使用します。
     """
 
     __tablename__ = "user"

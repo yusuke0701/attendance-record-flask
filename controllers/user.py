@@ -1,4 +1,5 @@
 from flask import Blueprint, request, render_template
+from flask_login import login_user, logout_user
 
 from controllers.database import db_session
 from models.user import User
@@ -14,13 +15,24 @@ def login():
     email = request.form.get("email")
     password = request.form.get("password")
 
+    if not all([email, password]):
+        return "Bad Request"
+
     user = db_session.query(User).filter(User.email == email).first()
     if user is None:
         return "登録されていないEmailアドレスです。"
     if str(user.password) != password:
         return "パスワードが間違っています。"
 
+    login_user(user, remember=True)
+
     return render_template("start.html")
+
+
+@bp.route("/logout", methods=["GET"])
+def logout():
+    logout_user()
+    return render_template("login.html")
 
 
 @bp.route("/register", methods=["GET", "POST"])
