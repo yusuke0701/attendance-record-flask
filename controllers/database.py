@@ -8,4 +8,4 @@ db_session = sessionmaker(db_engine)()
 
 
 def init():
-    Base.metadata.create_all(db_session)
+    Base.metadata.create_all(db_engine)
