@@ -30,6 +30,7 @@ def end():
         return "Internal Server Error"
 
     day.check_out = datetime.now()
+    day.working_seconds = day.check_out - day.check_in
 
     db_session.commit()
 
