@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from flask import Blueprint, render_template, session
+from flask import Blueprint, session as flask_session, render_template
 
 from controllers.database import db_session
 from models.day import Day
@@ -15,7 +15,7 @@ def start():
     db_session.add(new_day)
     db_session.commit()
 
-    session["day_id"] = new_day.id
+    flask_session["day_id"] = new_day.id
 
     return render_template("end.html")
 
@@ -30,6 +30,6 @@ def end():
 
     db_session.commit()
 
-    session["day_id"] = -1
+    flask_session["day_id"] = -1
 
     return render_template("start.html")
