@@ -2,7 +2,7 @@ from datetime import datetime
 
 from flask import Blueprint, render_template, session
 
-from controllers.database import Session
+from controllers.database import db_session
 from models.day import Day
 
 bp = Blueprint("day", __name__)
@@ -12,8 +12,8 @@ bp = Blueprint("day", __name__)
 def start():
     new_day = Day()
 
-    Session.add(new_day)
-    Session.commit()
+    db_session.add(new_day)
+    db_session.commit()
 
     session["day_id"] = new_day.id
 
@@ -22,10 +22,13 @@ def start():
 
 @bp.route("/end", methods=["POST"])
 def end():
-    day = Session.get(Day, session["day_id"])
+    day = db_session.get(Day, flask_session["day_id"])
+    if day is None:
+        return "Internal Server Error"
+
     day.check_out = datetime.now()
 
-    Session.commit()
+    db_session.commit()
 
     session["day_id"] = -1
 

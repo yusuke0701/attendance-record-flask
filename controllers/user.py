@@ -1,6 +1,6 @@
 from flask import Blueprint, request, render_template
 
-from controllers.database import Session
+from controllers.database import db_session
 from models.user import User
 
 bp = Blueprint("user", __name__)
@@ -14,7 +14,7 @@ def login():
     email = request.form.get("email")
     password = request.form.get("password")
 
-    user = Session.query(User).filter(User.email == email).first()
+    user = db_session.query(User).filter(User.email == email).first()
     if user is None:
         return "登録されていないEmailアドレスです。"
     if str(user.password) != password:
@@ -34,7 +34,7 @@ def register():
 
     new_user = User(name=name, email=email, password=password)
 
-    Session.add(new_user)
-    Session.commit()
+    db_session.add(new_user)
+    db_session.commit()
 
     return render_template("login.html")

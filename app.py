@@ -10,6 +10,7 @@ app.config.from_object("config")
 app.register_blueprint(day.bp)
 app.register_blueprint(user.bp)
 
+# TODO これ必要？
 db = SQLAlchemy(app)
 
 
