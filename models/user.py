@@ -26,8 +26,8 @@ class User(Base, UserMixin):
     __tablename__ = "user"
 
     id = Column(Integer, primary_key=True)
-    name = Column(String)
-    email = Column(String, unique=True)
-    password = Column(String)
+    name = Column(String, nullable=False)
+    email = Column(String, unique=True, nullable=False)
+    password = Column(String, nullable=False)
     user_class = Column(Enum(UserClass), nullable=False, default=UserClass.General)
     superior_id = Column(Integer)

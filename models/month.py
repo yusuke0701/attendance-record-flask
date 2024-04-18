@@ -12,6 +12,6 @@ class Month(Base):
     __tablename__ = "month"
 
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer)  # TODO 外部キー制約
-    year_month = Column(Date)
-    working_seconds = Column(Interval)
+    user_id = Column(Integer, nullable=False)  # TODO 外部キー制約
+    year_month = Column(Date, nullable=False)
+    working_seconds = Column(Interval, nullable=False)

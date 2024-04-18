@@ -14,7 +14,7 @@ class Day(Base):
     __tablename__ = "day"
 
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer)  # TODO 外部キー制約
+    user_id = Column(Integer, nullable=False)  # TODO 外部キー制約
     check_in = Column(DateTime, nullable=False, default=datetime.now())
     check_out = Column(DateTime)
     edited_check_in = Column(DateTime)
