@@ -6,7 +6,6 @@ from controllers import database, day, user
 
 app = Flask(__name__)
 app.config.from_object("config")
-app.secret_key = b"abcdefghijklmn"  # FIXME Flaskのセッションを使うために必要。envファイル等に格納する
 
 app.register_blueprint(day.bp)
 app.register_blueprint(user.bp)
