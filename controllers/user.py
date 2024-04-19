@@ -1,8 +1,9 @@
 from flask import Blueprint, request, render_template
 from flask_login import login_user, logout_user
 
+import controllers.admin
 from controllers.database import db_session
-from models.user import User
+from models.user import User, UserClass
 
 bp = Blueprint("user", __name__)
 
@@ -26,10 +27,14 @@ def login():
 
     login_user(user, remember=True)
 
+    # 管理者は専用ページへ遷移
+    if UserClass(user.user_class) == UserClass.Admin:
+        return controllers.admin.index()
+
     return render_template("start.html")
 
 
-@bp.route("/logout", methods=["GET"])
+@bp.route("/logout", methods=["GET", "POST"])
 def logout():
     logout_user()
     return render_template("login.html")

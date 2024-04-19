@@ -5,13 +5,14 @@ from flask_login import LoginManager
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-from controllers import database, day, user
+from controllers import database, admin, day, user
 from models.user import User as models_User
 
 app = Flask(__name__)
 app.config.from_object("config")
 app.permanent_session_lifetime = timedelta(minutes=10)
 
+app.register_blueprint(admin.bp)
 app.register_blueprint(day.bp)
 app.register_blueprint(user.bp)
 

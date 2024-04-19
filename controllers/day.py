@@ -17,7 +17,7 @@ def start():
     db_session.add(new_day)
     db_session.commit()
 
-    flask_session["day_id"] = new_day.id
+    flask_session[current_user.id] = new_day.id
 
     return render_template("end.html")
 
@@ -25,7 +25,7 @@ def start():
 @bp.route("/end", methods=["POST"])
 @login_required
 def end():
-    day = db_session.get(Day, flask_session["day_id"])
+    day = db_session.get(Day, flask_session[current_user.id])
     if day is None:
         return "Internal Server Error"
 
@@ -34,6 +34,6 @@ def end():
 
     db_session.commit()
 
-    flask_session["day_id"] = -1
+    flask_session[current_user.id] = -1
 
     return render_template("start.html")
