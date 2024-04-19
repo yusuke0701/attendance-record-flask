@@ -16,7 +16,8 @@
 				"ms-python.python",
 				"ms-python.black-formatter",
 				"yzhang.markdown-all-in-one",
-				"alexcvzz.vscode-sqlite"
+				"alexcvzz.vscode-sqlite",
+				"MS-CEINTL.vscode-language-pack-ja"
 			],
 			"settings": {
 				"terminal.integrated.defaultProfile.linux": "fish"
