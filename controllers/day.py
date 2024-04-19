@@ -27,7 +27,7 @@ def start():
 def end():
     day = db_session.get(Day, flask_session[current_user.id])
     if day is None:
-        return "Internal Server Error"
+        return render_template("error.html", err_msg="Internal Server Error")
 
     day.check_out = datetime.now()
     day.working_seconds = day.check_out - day.check_in

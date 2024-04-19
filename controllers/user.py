@@ -17,13 +17,15 @@ def login():
     password = request.form.get("password")
 
     if not all([email, password]):
-        return "Bad Request"
+        return render_template("error.html", err_msg="Bad Request")
 
     user = db_session.query(User).filter(User.email == email).first()
     if user is None:
-        return "登録されていないEmailアドレスです。"
+        return render_template(
+            "error.html", err_msg="登録されていないEmailアドレスです。"
+        )
     if str(user.password) != password:
-        return "パスワードが間違っています。"
+        return render_template("error.html", err_msg="パスワードが間違っています。")
 
     login_user(user, remember=True)
 

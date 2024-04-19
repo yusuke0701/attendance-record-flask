@@ -30,7 +30,7 @@ def load_user(user_id):
 
 @login_manager.unauthorized_handler
 def unatuhorized_handler():
-    return "ログインが必須のページです"
+    return render_template("error.html", err_msg="ログインが必須のページです。")
 
 
 @app.route("/")

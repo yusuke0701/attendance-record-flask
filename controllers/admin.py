@@ -11,6 +11,4 @@ bp = Blueprint("admin", __name__)
 @bp.route("/admin")
 def index():
     users = db_session.query(User).all()
-    for user in users:
-        print(user.name)
     return render_template("admin.html", users=users)
